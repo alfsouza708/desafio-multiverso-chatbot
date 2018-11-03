@@ -1,0 +1,32 @@
+<div class="container-fluid home morty-bar">
+    <div style="margin: 0 1.5px;" class="row">
+        <div class="col-12 title">Seja bem-vindo! Você pode conversar com Morty abaixo:</div>
+        <div class="col-md-4 animated fadeInLeft">
+            <img class="morty-img" src="../../assets/rick-chat.png" alt="Ricky and Morty">
+        </div>
+        <div class="col-md-8 row chat-total animated fadeInRight">
+            <div #scroll class="col-12 chat">
+                <div *ngFor="let mensagem of mensagens" class="messages">
+                    <div *ngIf="mensagem.watson" class="talk morty row animated bounceInLeft">
+                        <div class="col-2">
+                            <img src="../../assets/logo-chat.png" class="logo-chat" alt="">
+                        </div>
+                        <div class="col-10 mensagens--response">{{mensagem.mensagem}}</div>
+                    </div>
+                    <div *ngIf="!mensagem.watson" class="talk morty row user animated bounceInRight">
+                        <div style="margin-left: 0%;" class="col-10 mensagens--response">{{mensagem.mensagem}}</div>
+                    </div>
+                </div>
+                <div class="col-12 escrevendo animated infinite pulse" *ngIf="typing">
+                    O Morty está escrevendo a resposta... isso pode demorar!
+                </div>
+                <div class="col-12 escrevendo animated bounceIn" *ngIf="error">
+                    O Morty demora muito. Esperando um Rick do conselho vir arrumar a bagunça...
+                </div>
+            </div>
+            <div class="col-12 inputs">
+                <input id="inputMsg" type="text" [(ngModel)]="mensagem" class="form-control" placeholder="Digite algo para falar para o Morty:" aria-label="mensagem" (keydown.enter)="enviarMensagem()" aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </div>
+</div>
